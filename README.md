@@ -1,5 +1,5 @@
 
-*Simple countdown App
+Simple countdown App
 ---
 
-By channayouif
+By channayousif
