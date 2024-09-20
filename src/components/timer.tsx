@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect, ChangeEvent } from 'react';
 import { Button } from './ui/button';
 import { Input } from '@/components/ui/input'
+import Image from 'next/image';
 
 function CountDowmTimer() {
     // State to manage the duration input
@@ -87,10 +88,11 @@ function CountDowmTimer() {
 
   // Function to format the time left into mm:ss format
   const formatTime = (time: number): string => {
-    const minutes = Math.floor(time / 60); // Calculate minutes
+    const hours=Math.floor(time/3600) //Calculate hours
+    const minutes = Math.floor((time % 3600)/60); // Calculate minutes
     const seconds = time % 60; // Calculate seconds
     // Return the formatted string
-    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2,"0")}`;
+    return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2,"0")}`;
   };
 
  // Function to handle changes in the duration input field
@@ -105,6 +107,13 @@ function CountDowmTimer() {
     <div className="flex flex-col items-center justify-center h-screen bg-blue-400 dark:bg-gray-900">
       {/* Timer box container */}
       <div className="bg-blue-200 dark:bg-gray-800 shadow-lg rounded-lg p-8 w-full max-w-md">
+        <Image 
+        src="/channayousif.png"
+        height={100}
+        width={100}
+        alt=""
+        className="flex flex-auto align-middle"
+        />
         {/* Title of the countdown timer */}
         <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100 text-center">
           Simple Countdown Timer by channayousif
@@ -124,11 +133,12 @@ function CountDowmTimer() {
             variant="outline"
             className="text-gray-900 dark:text-gray-100 border-gray-800"
           >
-            Set duration
+            Set duration in seconds
           </Button>
         </div>
         {/* Display the formatted time left */}
         <div className="text-6xl font-bold text-gray-800 dark:text-gray-200 mb-8 text-center">
+          <h4>HH:MM:SS</h4>
           {formatTime(timeLeft)}
         </div>
         {/* Buttons to start, pause, and reset the timer */}
